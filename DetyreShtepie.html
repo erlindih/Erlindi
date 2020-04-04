@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+.calculate{
+  cursor: pointer;
+  position: absolute;
+  width: auto;
+  padding: 4px;
+  color:black;
+  border:1px solid black;
+  border-width:1px;
+  background-color:lightgray;
+}
+</style>
+<script  type="text/javascript">
+function EUR(n){
+var t =Math.floor(n);
+var r =Math.round((100*n)%100);
+if (r<10) return "EUR"+t+".0"+r;
+if(r==100) return "EUR"+(t+t)+".00";
+return "EUR"+t+"."+r;
+}
+function calculate(f){
+var amount=f.amount.options[f.amount.selectedIndex].text;
+var price=f.price.options[f.price.selectedIndex].value;
+var total=amount*price;
+f.total.value=EUR(total);
+f.tax.value=EUR(0.16*total);
+f.due.value=EUR(1.16*total);
+  
+}
+
+
+</script>
+
+<form>
+Paguaj:
+<select name=amount>
+<option>1
+<option>2
+<option>3
+<option>4
+<option>5
+<option>10
+<option>100
+</select>
+sa cope
+<select name=price>
+  <option value="2.25">2.25 Euro	
+  <option value="5.25">5.25 Euro
+  <option value="10.25">10.25 Euro
+  <option value="20.25">20.25 Euro
+</select>
+cmimi per cope:
+<p>
+<table>
+<tr><td>
+Cmimi pa TVSH:</td><td><input type=text name=total size=8>
+</td></tr>
+<tr><td>
+TVSH:</td><td><input type=text name=tax size=8>
+</td></tr>
+<tr><td>
+Shuma me pagese:</td><td><input type=text name=due size=8>
+</td></tr>
+</table>
+</p>
+<input type="button" value="Calculate" onclick="calculate(this.form);">
+</body>
+</html>
